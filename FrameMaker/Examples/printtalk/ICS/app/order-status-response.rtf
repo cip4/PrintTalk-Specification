@@ -1,30 +1,31 @@
 {\rtf1\ansi
 \deff0{\fonttbl\f0\fnil Courier New;}
 {\stylesheet{\s1 SampleCode;}{\cs1 XMLToken;}{\cs2 XMLElementName;}{\cs3 XMLAttributeName;}{\cs4 XMLAttributeValue;}{\cs5 XMLComment;}}\pard\plain\s1
-\cs1{<}\cs2{PrintTalk} \cs3{timestamp}\cs1{=}\cs4{"2019-10-23T09:28:00.000+02:00"} \cs3{xmlns}\cs1{=}\cs4{"http://www.printtalk.org/schema_20"} \line
-    \cs3{xmlns:xjdf}\cs1{=}\cs4{"http://www.CIP4.org/JDFSchema_2_0"} \cs3{ICSVersions}\cs1{=}\cs4{"Cus-APP_L1-2.0"}\cs1{>}\line
-	\cs1{<}\cs2{Header}\cs1{>}\line
-		\cs1{<}\cs2{From}\cs1{>}\line
-			\cs1{<}\cs2{Credential} \cs3{domain}\cs1{=}\cs4{"URL"}\cs1{>}\line
-                \cs1{<}\cs2{Identity}\cs1{>}https://worker.example.org/XJDF\cs1{</}\cs2{Identity}\cs1{>}\line
-			\cs1{</}\cs2{Credential}\cs1{>}\line
-		\cs1{</}\cs2{From}\cs1{>}\line
-		\cs1{<}\cs2{To}\cs1{>}\line
-			\cs1{<}\cs2{Credential} \cs3{domain}\cs1{=}\cs4{"URL"}\cs1{>}\line
-				\cs1{<}\cs2{Identity}\cs1{>}https://manager.example.org/XJDF\cs1{</}\cs2{Identity}\cs1{>}\line
-			\cs1{</}\cs2{Credential}\cs1{>}\line
-		\cs1{</}\cs2{To}\cs1{>}\line
-	\cs1{</}\cs2{Header}\cs1{>}\line
-	\cs1{<}\cs2{Request} \cs3{BusinessID}\cs1{=}\cs4{"B-49"} \cs3{BusinessRefID}\cs1{=}\cs4{"B-42"}\cs1{>}\line
-		\cs1{<}\cs2{OrderStatusResponse} \cs3{JobIDRef}\cs1{=}\cs4{"JOB-22"}\cs1{>}\line
-		    \cs1{<}\cs2{xjdf:AuditPool}\cs1{>}\line
-			    \cs1{<}\cs2{xjdf:AuditNotification}\cs1{>}\line
-				    \cs1{<}\cs2{xjdf:Header} \cs3{DeviceID}\cs1{=}\cs4{"Example-Worker-1"} \cs3{Time}\cs1{=}\cs4{"2019-10-23T09:28:00.000+02:00"}\cs1{/>}\line
-				    \cs1{<}\cs2{xjdf:Notification} \cs3{Class}\cs1{=}\cs4{"Event"} \cs3{JobID}\cs1{=}\cs4{"B-52"}\cs1{>}\line
-					    \cs1{<}\cs2{xjdf:Milestone} \cs3{MilestoneType}\cs1{=}\cs4{"PrePressCompleted"}\cs1{/>}\line
-				    \cs1{</}\cs2{xjdf:Notification}\cs1{>}\line
-			    \cs1{</}\cs2{xjdf:AuditNotification}\cs1{>}\line
-		    \cs1{</}\cs2{xjdf:AuditPool}\cs1{>}\line
-		\cs1{</}\cs2{OrderStatusResponse}\cs1{>}\line
-	\cs1{</}\cs2{Request}\cs1{>}\line
+\cs1{<}\cs2{PrintTalk} \cs3{ICSVersions}\cs1{=}\cs4{"Cus-APP_L1-2.0"}\line
+  \cs3{timestamp}\cs1{=}\cs4{"2019-10-23T09:28:00.000+02:00"}\line
+  \cs3{xmlns}\cs1{=}\cs4{"http://www.printtalk.org/schema_20"} \cs3{xmlns:xjdf}\cs1{=}\cs4{"http://www.CIP4.org/JDFSchema_2_0"}\cs1{>}\line
+  \cs1{<}\cs2{Header}\cs1{>}\line
+    \cs1{<}\cs2{From}\cs1{>}\line
+      \cs1{<}\cs2{Credential} \cs3{domain}\cs1{=}\cs4{"URL"}\cs1{>}\line
+        \cs1{<}\cs2{Identity}\cs1{>}https://worker.example.org/XJDF\cs1{</}\cs2{Identity}\cs1{>}\line
+      \cs1{</}\cs2{Credential}\cs1{>}\line
+    \cs1{</}\cs2{From}\cs1{>}\line
+    \cs1{<}\cs2{To}\cs1{>}\line
+      \cs1{<}\cs2{Credential} \cs3{domain}\cs1{=}\cs4{"URL"}\cs1{>}\line
+        \cs1{<}\cs2{Identity}\cs1{>}https://manager.example.org/XJDF\cs1{</}\cs2{Identity}\cs1{>}\line
+      \cs1{</}\cs2{Credential}\cs1{>}\line
+    \cs1{</}\cs2{To}\cs1{>}\line
+  \cs1{</}\cs2{Header}\cs1{>}\line
+  \cs1{<}\cs2{Request} \cs3{BusinessID}\cs1{=}\cs4{"B-49"} \cs3{BusinessRefID}\cs1{=}\cs4{"B-42"}\cs1{>}\line
+    \cs1{<}\cs2{OrderStatusResponse} \cs3{JobIDRef}\cs1{=}\cs4{"JOB-22"}\cs1{>}\line
+      \cs1{<}\cs2{xjdf:AuditPool}\cs1{>}\line
+        \cs1{<}\cs2{xjdf:AuditNotification}\cs1{>}\line
+          \cs1{<}\cs2{xjdf:Header} \cs3{DeviceID}\cs1{=}\cs4{"Example-Worker-1"} \cs3{Time}\cs1{=}\cs4{"2019-10-23T09:28:00.000+02:00"}\cs1{/>}\line
+          \cs1{<}\cs2{xjdf:Notification} \cs3{Class}\cs1{=}\cs4{"Event"} \cs3{JobID}\cs1{=}\cs4{"B-52"}\cs1{>}\line
+            \cs1{<}\cs2{xjdf:Milestone} \cs3{MilestoneType}\cs1{=}\cs4{"PrePressCompleted"}\cs1{/>}\line
+          \cs1{</}\cs2{xjdf:Notification}\cs1{>}\line
+        \cs1{</}\cs2{xjdf:AuditNotification}\cs1{>}\line
+      \cs1{</}\cs2{xjdf:AuditPool}\cs1{>}\line
+    \cs1{</}\cs2{OrderStatusResponse}\cs1{>}\line
+  \cs1{</}\cs2{Request}\cs1{>}\line
 \cs1{</}\cs2{PrintTalk}\cs1{>}}
