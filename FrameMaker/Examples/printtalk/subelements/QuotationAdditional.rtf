@@ -1,14 +1,18 @@
 {\rtf1\ansi
 \deff0{\fonttbl\f0\fnil Courier New;}
 {\stylesheet{\s1 SampleCode;}{\cs1 XMLToken;}{\cs2 XMLElementName;}{\cs3 XMLAttributeName;}{\cs4 XMLAttributeValue;}{\cs5 XMLComment;}}\pard\plain\s1
-Placeholder - To be replaced.\line
-\cs1{<}\cs2{Pricing} \cs3{Currency}\cs1{=}\cs4{"CAD"}\cs1{>}\line
-  \cs1{<}\cs2{Price} \cs3{DescriptiveName}\cs1{=}\cs4{"Item #1"} \cs3{ItemRefs}\cs1{=}\cs4{"product1"}\line
-    \cs3{LineID}\cs1{=}\cs4{"L_1"} \cs3{Price}\cs1{=}\cs4{"42"} \cs3{PriceType}\cs1{=}\cs4{"Product"} \cs3{TaxType}\cs1{=}\cs4{"Gross"}\cs1{/>}\line
-  \cs1{<}\cs2{Price} \cs3{DescriptiveName}\cs1{=}\cs4{"Item #2"} \cs3{ItemRefs}\cs1{=}\cs4{"product2"}\line
-    \cs3{LineID}\cs1{=}\cs4{"L_2"} \cs3{Price}\cs1{=}\cs4{"21"} \cs3{PriceType}\cs1{=}\cs4{"Product"} \cs3{TaxType}\cs1{=}\cs4{"Gross"}\cs1{/>}\line
-  \cs1{<}\cs2{Price} \cs3{DescriptiveName}\cs1{=}\cs4{"Total"} \cs3{LineIDRefs}\cs1{=}\cs4{"L_1 L_2"} \cs3{Price}\cs1{=}\cs4{"63"}\line
-    \cs3{PriceType}\cs1{=}\cs4{"Total"} \cs3{TaxType}\cs1{=}\cs4{"Gross"}\cs1{/>}\line
-  \cs1{<}\cs2{Price} \cs3{DescriptiveName}\cs1{=}\cs4{"Included tax"} \cs3{LineIDRefs}\cs1{=}\cs4{"L_1 L_2"}\line
-    \cs3{Price}\cs1{=}\cs4{"12.6"} \cs3{PriceType}\cs1{=}\cs4{"Total"} \cs3{TaxType}\cs1{=}\cs4{"Tax"}\cs1{/>}\line
-\cs1{</}\cs2{Pricing}\cs1{>}}
+\cs1{<}\cs2{Quotation} \cs3{Estimate}\cs1{=}\cs4{"false"} \cs3{Expires}\cs1{=}\cs4{"2020-04-05T18:00:00+01:00"}\cs1{>}\line
+  \cs1{<}\cs2{Quote} \cs3{QuoteID}\cs1{=}\cs4{"q1"}\cs1{>}\line
+    \cs1{<}\cs2{Pricing} \cs3{Currency}\cs1{=}\cs4{"GBP"}\cs1{>}\line
+      \cs1{<}\cs2{Price} \cs3{Amount}\cs1{=}\cs4{"500"}\line
+        \cs3{DescriptiveName}\cs1{=}\cs4{"500 simple business cards"} \cs3{Price}\cs1{=}\cs4{"250"}\line
+        \cs3{PriceType}\cs1{=}\cs4{"Product"} \cs3{TaxType}\cs1{=}\cs4{"Net"}\cs1{>}\line
+        \cs1{<}\cs2{Additional} \cs3{Amount}\cs1{=}\cs4{"100"} \cs3{BaseAmount}\cs1{=}\cs4{"500"} \cs3{BasePrice}\cs1{=}\cs4{"250"} \cs3{Price}\cs1{=}\cs4{"40"}\cs1{/>}\line
+      \cs1{</}\cs2{Price}\cs1{>}\line
+      \cs1{<}\cs2{Price} \cs3{DescriptiveName}\cs1{=}\cs4{"shipping and handling"} \cs3{Price}\cs1{=}\cs4{"2"}\line
+        \cs3{PriceType}\cs1{=}\cs4{"Shipping"} \cs3{TaxType}\cs1{=}\cs4{"Net"}\cs1{>}\line
+        \cs1{<}\cs2{Additional} \cs3{Amount}\cs1{=}\cs4{"500"} \cs3{BaseAmount}\cs1{=}\cs4{"1000"} \cs3{BasePrice}\cs1{=}\cs4{"2"} \cs3{Price}\cs1{=}\cs4{"1"}\cs1{/>}\line
+      \cs1{</}\cs2{Price}\cs1{>}\line
+    \cs1{</}\cs2{Pricing}\cs1{>}\line
+  \cs1{</}\cs2{Quote}\cs1{>}\line
+\cs1{</}\cs2{Quotation}\cs1{>}}
