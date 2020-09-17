@@ -1,0 +1,73 @@
+# This is the basic workflow to build ICS documentation
+
+name: Release Build
+# The VERSION is the main release number i.e. 1.7 or 2.1
+env:      
+  JDF_VERSION:    '2.2'
+  JDF_FILE_NAME:  PrintTalk
+  CONFIG_FILE:    PrintTalk.ini
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    tags:
+      - '*'
+
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: 'Manual Run'  
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: [self-hosted, framemaker-2015] 
+    
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout source
+        uses: actions/checkout@v2
+
+      # Get the date 
+      - name: Get date
+        run: echo "::set-env name=NOW::$(date -UFormat '%Y%m%d')"
+      
+      # Use the build tag as the document version
+      - name: Get build tag
+        run: echo "::set-env name=VERSION::$($env:GITHUB_REF.replace('refs/tags/', ''))"
+
+      - name: Check Build Variables
+        run:  >
+          python Build\buildtest.py $env:CONFIG_FILE 
+          "$env:JDF_FILE_NAME $env:JDF_VERSION $env:VERSION"
+          "$env:JDF_VERSION $env:VERSION"
+          "Run-$env:GITHUB_RUN_NUMBER"          
+
+      # Uses the remote self-host to build the ICS
+      - name: Build ICS-Base Specification
+        run:  >
+          python Build\specbuilder.py $env:CONFIG_FILE
+          "$env:JDF_FILE_NAME $env:JDF_VERSION $env:VERSION"
+          "$env:JDF_VERSION $env:VERSION"
+          "Run-$env:GITHUB_RUN_NUMBER"          
+
+      # Upload the artifact 
+      - name: Upload ICS Specification artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.JDF_FILE_NAME }}-artifact
+          path: target/*.pdf
+          
+      # Upload the release
+      - name: Upload to release
+        uses: svenstaro/upload-release-action@v1-release
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: target/*.pdf
+          tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true
