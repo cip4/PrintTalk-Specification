@@ -1,4 +1,4 @@
-# This is the basic workflow to build ICS documentation
+# This is the basic workflow to build the PrintTalk release specification
 
 name: Release Build
 # The VERSION is the main release number i.e. 1.7 or 2.1
