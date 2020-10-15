@@ -66,5 +66,5 @@ jobs:
           username: ${{ secrets.CONFLUENCE_USER }}
           password: ${{ secrets.CONFLUENCE_PASSWORD }}
           contentId: 15663320
-          label: 'ptk-specificaion,spec-snapshot'
+          label: 'ptk-specificaion,spec-draft'
           filePattern: 'target/*.pdf'
