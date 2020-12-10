@@ -8,7 +8,7 @@ Here is the direct link to the latest release on github.com:
 - [PrintTalk Specificaion 2.1](https://github.com/cip4/PrintTalk-Specification/releases/download/2.1/PrintTalk-Specification-2.1.pdf)
   
 ## Issue Tracking
-For issue tracking please refer to [CIP4 JIRA](https://jira.cip4.org/projects/JDF/summary).  
+For issue tracking please refer to [CIP4 JIRA](https://jira.cip4.org/projects/PTK).  
 
 ## Development Notes
 For Development Notes, please check the [project's Wiki](https://github.com/cip4/PrintTalk-Specification/wiki).
