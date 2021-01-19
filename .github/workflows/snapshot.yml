@@ -39,16 +39,16 @@ jobs:
       - name: Check Build Variables
         run:  >
           python Build\buildtest.py $env:CONFIG_FILE
-          "$env:JDF_FILE_NAME $env:JDF_VERSION Draft-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
-          "$env:JDF_VERSION Draft-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
+          "$env:JDF_FILE_NAME $env:JDF_VERSION DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
+          "$env:JDF_VERSION DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
           "Run-$env:GITHUB_RUN_NUMBER"
 
       # Uses the remote self-host to build the ICS
       - name: Build ICS-Base Specification
         run:  >
           python Build\specbuilder.py $env:CONFIG_FILE
-          "$env:JDF_FILE_NAME $env:JDF_VERSION Draft-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
-          "$env:JDF_VERSION Draft-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
+          "$env:JDF_FILE_NAME $env:JDF_VERSION DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
+          "$env:JDF_VERSION DRAFT-$env:NOW build-$env:GITHUB_RUN_NUMBER"
           "Run-$env:GITHUB_RUN_NUMER"
 
       # Upload any artefact produced.
@@ -58,3 +58,13 @@ jobs:
           name: ${{ env.JDF_FILE_NAME }}-artifact
           path: target/*.pdf
           
+      # Upload to Confluence
+      - name: Confluence Upload
+        uses: cip4/action-confluence-upload@master
+        with:
+          url: 'https://confluence.cip4.org'
+          username: ${{ secrets.CONFLUENCE_USER }}
+          password: ${{ secrets.CONFLUENCE_PASSWORD }}
+          contentId: 15663320
+          label: 'ptk-specificaion,spec-draft'
+          filePattern: 'target/*.pdf'
