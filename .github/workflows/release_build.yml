@@ -9,7 +9,7 @@ env:
   DOCUMENT_FILE_NAME:   PrintTalk
   CONFIG_FILE:          Build\PrintTalk.ini
   CONFLUENCE_ID:        '15663320'
-  CONFLUENCE_LABELS:    'milestone'
+  CONFLUENCE_LABELS:    'printtalk-specification,milestone'
 
 ## The remaining section SHOULD be common to all draft documentation builds
 # Controls when the action will run
@@ -63,21 +63,17 @@ jobs:
         with:
           format: YYYYMMDD
       
-      # Use the build tag as the document version
-      - name: Get build tag
-        run: $env:GITHUB_REF.replace('refs/tags/', '')
-
       - name: Build Document
         timeout-minutes: 30
         env:
           NOW: "${{ steps.current-time.outputs.formattedTime }}"
-          version:      ${{env.DOCUMENT_VERSION}}
+          version:      ${{env.GITHUB_REF.replace('refs/tags/', '')}}
           filename:     ${{env.DOCUMENT_FILE_NAME}} 
           configfile:   ${{env.CONFIG_FILE}}
         run: >
           python ..\builder\specbuilder.py $env:configfile
-          "$env:filename $env:version DRAFT-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
-          "$env:version DRAFT-$env:NOW Build-$env:GITHUB_RUN_NUMBER"
+          "$env:filename $env:version"
+          "Release $env:version"
           "Run-$env:GITHUB_RUN_NUMBER"
         working-directory: ./document
 
