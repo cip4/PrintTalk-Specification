@@ -9,7 +9,7 @@ env:
   DOCUMENT_FILE_NAME:   PrintTalk
   CONFIG_FILE:          Build\PrintTalk.ini
   CONFLUENCE_ID:        '15663320'
-  CONFLUENCE_LABELS:    'ptk-specificaion,spec-draft'  
+  CONFLUENCE_LABELS:    'printtalk-specification,spec-draft'  
 
 ## The remaining section SHOULD be common to all draft documentation builds
 # Controls when the action will run
