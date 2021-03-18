@@ -10,6 +10,10 @@ env:
   CONFIG_FILE:          Build\PrintTalk.ini
   CONFLUENCE_ID:        '15663320'
   CONFLUENCE_LABELS:    'printtalk-specification,spec-draft'  
+  
+  DOCUMENT_COPYRIGHT:   'CIP4 Organization, all rights reserved'
+
+  BUILD_UTILITY_EXE: c:\actions-runner\_work\_tool\document-processing\document-processing.exe  
 
 ## The remaining section SHOULD be common to all draft documentation builds
 # Controls when the action will run
@@ -59,11 +63,24 @@ jobs:
       - name: Build Document
         timeout-minutes: 30
         run: >
-          python ..\builder\specbuilder.py $env:CONFIG_FILE
+          python ..\builder\scripts\specbuilder.py $env:CONFIG_FILE
           "$env:DOCUMENT_FILE_NAME $env:DOCUMENT_VERSION DRAFT-$((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
           "$env:DOCUMENT_VERSION DRAFT-$((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
           "Run-$env:GITHUB_RUN_NUMBER"
         working-directory: ./document
+        
+      # Mark pages with draft watermark
+      - name: Watermark pages
+        run: >
+          ${{ env.BUILD_UTILITY_EXE }} draft "$env:DOCUMENT_FILE_NAME*.pdf"
+        working-directory: ./document/target
+        
+      # Update document properties copyright
+      - name: Update copyright
+        run: >
+          ${{ env.BUILD_UTILITY_EXE }} info "$env:DOCUMENT_FILE_NAME*.pdf"
+          --copyright "$((Get-Date).ToString('MMMM yyyy')) $env:DOCUMENT_COPYRIGHT"
+        working-directory: ./document/target
 
       # Upload any artefact produced.
       - name: Upload Document
