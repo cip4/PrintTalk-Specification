@@ -5,13 +5,17 @@ name: Release Build
 # The VERSION is the main release number i.e. 1.7 or 2.1
 env:
   BUILD_NAME:           PrintTalk
-  DOCUMENT_VERSION:     '2.2'
-  DOCUMENT_FILE_NAME:   PrintTalk
+  #DOCUMENT_VERSION:     '2.2' not required for release build. Uses Tag of build.  
+  DOCUMENT_COVER_TITLE:   PrintTalk Specification
   CONFIG_FILE:          Build\PrintTalk.ini
   CONFLUENCE_ID:        '1560313992'
   CONFLUENCE_LABELS:    'printtalk-specification,milestone'
-  
-  DOCUMENT_COPYRIGHT:   'CIP4 Organization, all rights reserved'
+
+  DOCUMENT_METADATA_COPYRIGHT:  'CIP4 Organization, all rights reserved'
+  DOCUMENT_METADATA_TITLE:      'PrintTalk Specification'
+  DOCUMENT_METADATA_SUBJECT:    'Communication of Business Transactions Between Print Buyers and Print Providers'
+  DOCUMENT_METADATA_AUTHOR:     'CIP4 Organization'
+  DOCUMENT_METADATA_KEYWORDS:   'Automation;CIM;CIP4;Exchange Job Definition Format;Graphic Arts;Graphics;ICS;Interface;Interoperability;Interoperability Conformance;Specification;Printing;PrintTalk;Specification;Standard;Workflow;XJDF;XJMF;XML'
 
   BUILD_UTILITY_EXE: c:\actions-runner\_work\_tool\document-processing\document-processing.exe   
 
@@ -55,20 +59,27 @@ jobs:
           token: ${{ steps.access_token.outputs.token }}
           path: builder
 
+      # Build the release document - note: no cover version required, part of cover title. 
       - name: Build Document
         timeout-minutes: 30
         run: >
           python ..\builder\scripts\specbuilder.py $env:CONFIG_FILE
-          "$env:DOCUMENT_FILE_NAME $(${env:GITHUB_REF}.replace('refs/tags/',''))"
-          "Release $(${env:GITHUB_REF}.replace('refs/tags/',''))"
+          "$env:DOCUMENT_COVER_TITLE $(${env:GITHUB_REF}.replace('refs/tags/',''))"
+          "$env:DOCUMENT_COVER_TITLE $(${env:GITHUB_REF}.replace('refs/tags/',''))"
+          " "
           "Run-$env:GITHUB_RUN_NUMBER"
         working-directory: ./document
         
-      # Update document properties copyright
-      - name: Update copyright
+     # Update document meta-data properties
+      - name: Update Document Metadata
         run: >
-          ${{ env.BUILD_UTILITY_EXE }} info "$env:DOCUMENT_FILE_NAME*.pdf"
-          --copyright "$((Get-Date).ToString('MMMM yyyy')) $env:DOCUMENT_COPYRIGHT"
+          ${{ env.BUILD_UTILITY_EXE }} info "$env:DOCUMENT_COVER_TITLE*.pdf"
+          --copyright "$((Get-Date).ToString('MMMM yyyy')) $env:DOCUMENT_METADATA_COPYRIGHT"
+          --title     "$env:DOCUMENT_METADATA_TITLE $(${env:GITHUB_REF}.replace('refs/tags/',''))"
+          --subject   "$env:DOCUMENT_METADATA_SUBJECT"
+          --author    "$env:DOCUMENT_METADATA_AUTHOR"
+          --keywords  "$env:DOCUMENT_METADATA_KEYWORDS"
+          --version   "$(${env:GITHUB_REF}.replace('refs/tags/',''))"
         working-directory: ./document/target
 
       # Upload any artefact produced.
