@@ -65,8 +65,8 @@ jobs:
         run: >
           python ..\builder\scripts\specbuilder.py $env:CONFIG_FILE
           "$env:DOCUMENT_COVER_TITLE $(${env:GITHUB_REF}.replace('refs/tags/',''))"
-          "$env:DOCUMENT_COVER_TITLE $(${env:GITHUB_REF}.replace('refs/tags/',''))"
-          " "
+          "$env:DOCUMENT_COVER_TITLE"
+          "Release: $(${env:GITHUB_REF}.replace('refs/tags/',''))"
           "Run-$env:GITHUB_RUN_NUMBER"
         working-directory: ./document
         
