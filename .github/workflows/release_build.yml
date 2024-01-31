@@ -13,9 +13,6 @@ env:
 
   DOCUMENT_METADATA_COPYRIGHT:  'CIP4 Organization, all rights reserved'
   DOCUMENT_METADATA_TITLE:      'PrintTalk Specification'
-  DOCUMENT_METADATA_SUBJECT:    'Communication of Business Transactions Between Print Buyers and Print Providers'
-  DOCUMENT_METADATA_AUTHOR:     'CIP4 Organization'
-  DOCUMENT_METADATA_KEYWORDS:   'Automation;CIM;CIP4;Exchange Job Definition Format;Graphic Arts;Graphics;ICS;Interface;Interoperability;Interoperability Conformance;Specification;Printing;PrintTalk;Specification;Standard;Workflow;XJDF;XJMF;XML'
 
   BUILD_UTILITY_EXE: c:\actions-runner\_work\_tool\document-processing\document-processing.exe   
 
@@ -24,7 +21,7 @@ env:
 on:
   push:
     tags:
-      - '*'
+      - '2*'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -67,21 +64,13 @@ jobs:
           "$env:DOCUMENT_COVER_TITLE $(${env:GITHUB_REF}.replace('refs/tags/',''))"
           "$env:DOCUMENT_COVER_TITLE"
           "Release: $(${env:GITHUB_REF}.replace('refs/tags/',''))"
+          "$env:DOCUMENT_METADATA_TITLE $(${env:GITHUB_REF}.replace('refs/tags/',''))"
+          "$(${env:GITHUB_REF}.replace('refs/tags/',''))"
+          "$((Get-Date).ToString('MMMM yyyy')) $env:DOCUMENT_METADATA_COPYRIGHT"
+          "2000-$((Get-Date).ToString('yyyy'))"
           "Run-$env:GITHUB_RUN_NUMBER"
         working-directory: ./document
         
-     # Update document meta-data properties
-      - name: Update Document Metadata
-        run: >
-          ${{ env.BUILD_UTILITY_EXE }} info "$env:DOCUMENT_COVER_TITLE*.pdf"
-          --copyright "$((Get-Date).ToString('MMMM yyyy')) $env:DOCUMENT_METADATA_COPYRIGHT"
-          --title     "$env:DOCUMENT_METADATA_TITLE $(${env:GITHUB_REF}.replace('refs/tags/',''))"
-          --subject   "$env:DOCUMENT_METADATA_SUBJECT"
-          --author    "$env:DOCUMENT_METADATA_AUTHOR"
-          --keywords  "$env:DOCUMENT_METADATA_KEYWORDS"
-          --version   "$(${env:GITHUB_REF}.replace('refs/tags/',''))"
-        working-directory: ./document/target
-
       # Upload any artefact produced.
       - name: Upload Document
         uses: actions/upload-artifact@v2
