@@ -67,7 +67,7 @@ jobs:
           python ..\builder\scripts\specbuilder.py $env:CONFIG_FILE
           "$env:DOCUMENT_COVER_TITLE $env:DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
           "$env:DOCUMENT_COVER_TITLE"
-          "$env:DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
+          "Version $env:DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
           "$env:DOCUMENT_METADATA_TITLE $env:DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER" 
           "$env:DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
           "$((Get-Date).ToString('MMMM yyyy')) $env:DOCUMENT_METADATA_COPYRIGHT"

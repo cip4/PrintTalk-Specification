@@ -66,7 +66,7 @@ jobs:
           python ..\builder\scripts\specbuilder.py $env:CONFIG_FILE
           "$env:DOCUMENT_COVER_TITLE $env:DOCUMENT_VERSION $(${env:GITHUB_REF}.replace('refs/tags/',''))"
           "$env:DOCUMENT_COVER_TITLE"
-          "$env:DOCUMENT_VERSION $(${env:GITHUB_REF}.replace('refs/tags/',''))"
+          "Version $env:DOCUMENT_VERSION $(${env:GITHUB_REF}.replace('refs/tags/',''))"
           "$env:DOCUMENT_METADATA_TITLE $env:DOCUMENT_VERSION $(${env:GITHUB_REF}.replace('refs/tags/',''))"
           "$env:DOCUMENT_VERSION $(${env:GITHUB_REF}.replace('refs/tags/',''))"
           "$((Get-Date).ToString('MMMM yyyy')) $env:DOCUMENT_METADATA_COPYRIGHT"
