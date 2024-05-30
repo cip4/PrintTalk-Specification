@@ -5,7 +5,7 @@ name: Release Build
 # The VERSION is the main release number i.e. 1.7 or 2.1
 env:
   BUILD_NAME:           PrintTalk
-  #DOCUMENT_VERSION:     '2.2' not required for release build. Uses Tag of build.  
+  #DOCUMENT_VERSION:     '2.3' not required for release build. Uses Tag of build.  
   DOCUMENT_COVER_TITLE:   PrintTalk Specification
   CONFIG_FILE:          Build\PrintTalk.ini
   CONFLUENCE_ID:        '1560313992'
