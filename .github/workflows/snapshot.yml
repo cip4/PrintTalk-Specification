@@ -78,8 +78,10 @@ jobs:
       # Mark pages with draft watermark
       - name: Watermark pages
         run: >
-          ${{ env.BUILD_UTILITY_EXE }} draft "$env:DOCUMENT_COVER_TITLE*.pdf"
-        working-directory: ./document/target
+          python ..\builder\scripts\watermark.py
+          "$env:DOCUMENT_COVER_TITLE $env:DOCUMENT_VERSION Draft $((Get-Date).ToString('yyyyMMdd')) Build-$env:GITHUB_RUN_NUMBER"
+          "Run-$env:GITHUB_RUN_NUMBER"
+        working-directory: ./document
         
       # Upload any artefact produced.
       - name: Upload Document
@@ -87,14 +89,3 @@ jobs:
         with:
           name: ${{ env.BUILD_NAME }}-artifact
           path: document/target/*.pdf
-          
-      # Upload to Confluence
-      - name: Confluence Upload
-        uses: cip4/action-confluence-upload@master
-        with:
-          url: 'https://cip4.atlassian.net/wiki'
-          username: ${{ secrets.ATLASSIAN_USER }}
-          password: ${{ secrets.ATLASSIAN_TOKEN }}
-          contentId: ${{ env.CONFLUENCE_ID }}
-          label: ${{ env.CONFLUENCE_LABELS }}
-          filePattern: 'document/target/*.pdf'
